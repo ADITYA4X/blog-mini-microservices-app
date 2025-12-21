@@ -1,5 +1,6 @@
 import React from "react";
 import PostCreate from "./PostCreate";
+import PostList from "./PostList";
 
 function App() {
   return (
@@ -9,6 +10,13 @@ function App() {
           Create Post
         </h2>
         <PostCreate />
+        <hr />
+
+        <h2 className="text-xl font-bold text-gray-800 mb-6 mt-6 text-center">
+          Posts
+        </h2>
+
+        <PostList />
       </div>
     </div>
   );

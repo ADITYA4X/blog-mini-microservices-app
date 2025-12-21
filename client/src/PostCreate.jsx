@@ -8,9 +8,11 @@ function PostCreate() {
     e.preventDefault();
     // console.log("Post title:", title);
 
+    // Send a POST request to create a new post
     await axios.post("http://localhost:4000/posts", {
       title,
     });
+
     setTitle("");
   };
 
