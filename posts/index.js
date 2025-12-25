@@ -31,6 +31,19 @@ app.post("/posts", (req, res) => {
   res.status(201).send(posts[id]);
 });
 
+// Delete a post by ID
+app.delete("/posts/:id", (req, res) => {
+  const { id } = req.params;
+
+  if (!posts[id]) {
+    return res.status(404).send({ message: "Post not found" });
+  }
+
+  delete posts[id];
+
+  res.status(200).send({ message: "Post deleted successfully" });
+});
+
 // Start the server
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);

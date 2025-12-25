@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-function PostCreate() {
+function PostCreate({ onPostCreated }) {
   const [title, setTitle] = useState("");
 
   const handleSubmit = async (e) => {
@@ -14,6 +14,8 @@ function PostCreate() {
     });
 
     setTitle("");
+
+    onPostCreated();
   };
 
   return (

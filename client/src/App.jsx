@@ -9,12 +9,8 @@ function App() {
         <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">
           Create Post
         </h2>
-        <PostCreate />
-        <hr />
 
-        <h2 className="text-xl font-bold text-gray-800 mb-6 mt-6 text-center">
-          Posts
-        </h2>
+        <hr />
 
         <PostList />
       </div>
