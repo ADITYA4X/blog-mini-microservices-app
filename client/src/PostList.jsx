@@ -35,7 +35,11 @@ function PostList() {
 
   return (
     <div className="space-y-6">
-      <PostCreate onPostCreated={fetchPosts} />
+      <PostCreate
+        onPostCreated={(newPost) =>
+          setPosts((prev) => ({ ...prev, [newPost.id]: newPost }))
+        }
+      />
 
       <div className="text-center text-gray-600 font-medium">
         {Object.keys(posts).length === 0

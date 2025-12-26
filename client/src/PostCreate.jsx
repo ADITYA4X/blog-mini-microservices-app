@@ -9,13 +9,13 @@ function PostCreate({ onPostCreated }) {
     // console.log("Post title:", title);
 
     // Send a POST request to create a new post
-    await axios.post("http://localhost:4000/posts", {
+    const res = await axios.post("http://localhost:4000/posts", {
       title,
     });
 
     setTitle("");
 
-    onPostCreated();
+    onPostCreated(res.data);
   };
 
   return (
