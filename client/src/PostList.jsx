@@ -2,9 +2,11 @@ import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import CommentCreate from "./CommentCreate";
 import PostCreate from "./PostCreate";
+import CommentList from "./CommentList";
 
 function PostList() {
   const [posts, setPosts] = useState({});
+  const [commentRefresh, setCommentRefresh] = useState({});
 
   const fetchPosts = useCallback(async () => {
     const res = await axios.get("http://localhost:4000/posts");
@@ -25,6 +27,10 @@ function PostList() {
       delete updatedPosts[postId];
       return updatedPosts;
     });
+  };
+
+  const triggerCommentRefresh = (postId) => {
+    setCommentRefresh((prev) => ({ ...prev, [postId]: Date.now() }));
   };
 
   return (
@@ -59,7 +65,17 @@ function PostList() {
                 X
               </button>
             </div>
-            <CommentCreate postId={post.id} />
+            <CommentCreate
+              postId={post.id}
+              onCommentCreated={() => triggerCommentRefresh(post.id)}
+            />
+
+            <div className="mt-4">
+              <CommentList
+                postId={post.id}
+                refreshSignal={commentRefresh?.[post.id]}
+              />
+            </div>
           </div>
         ))}
       </div>
