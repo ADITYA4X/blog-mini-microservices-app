@@ -15,6 +15,8 @@ app.post("/events", async (req, res) => {
   } catch (error) {
     console.error("Error forwarding event:", error.message);
   }
+
+  res.send({});
 });
 
 const PORT = 4005;
