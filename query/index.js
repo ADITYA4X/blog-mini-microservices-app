@@ -44,6 +44,12 @@ app.post("/events", (req, res) => {
   res.send({});
 });
 
+app.delete("/posts/:id", (req, res) => {
+  const { id } = req.params;
+  delete posts[id];
+  res.send({});
+});
+
 app.listen(port, () => {
   console.log(`Query service is running on http://localhost:${port}`);
 });

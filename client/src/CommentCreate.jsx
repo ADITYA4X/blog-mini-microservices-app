@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 
-const CommentCreate = ({ postId, onCommentCreated }) => {
+const CommentCreate = ({ postId }) => {
   const [content, setContent] = useState("");
 
   const handleSubmit = async (e) => {
@@ -12,8 +12,6 @@ const CommentCreate = ({ postId, onCommentCreated }) => {
     });
 
     setContent("");
-
-    onCommentCreated();
   };
 
   return (

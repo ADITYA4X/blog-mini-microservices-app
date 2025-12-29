@@ -1,28 +1,23 @@
-import axios from "axios";
-import React, { useCallback, useEffect, useState } from "react";
+import React from "react";
 
-const CommentList = ({ postId, refreshSignal }) => {
-  const [comments, setComments] = useState([]);
-
-  const fetchComments = useCallback(async () => {
-    const res = await axios.get(
-      `http://localhost:4001/posts/${postId}/comments`
-    );
-    setComments(res.data);
-  }, [postId]);
-
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    fetchComments();
-  }, [fetchComments, refreshSignal]);
-
+const CommentList = ({ comments }) => {
   return (
-    <div className="mt-4 px-2 border-t border-gray-200">
-      {comments.map((comment) => (
-        <li key={comment.id} className="p-1 ">
-          {comment.content}
-        </li>
-      ))}
+    <div>
+      <h4 className="text-md font-semibold mb-2 text-gray-700">Comments</h4>
+      {comments?.length === 0 ? (
+        <p className="text-gray-500">No comments yet.</p>
+      ) : (
+        <ul className="space-y-2">
+          {comments?.map((comment) => (
+            <li
+              key={comment.id}
+              className="p-2 border border-gray-300 rounded-lg bg-white"
+            >
+              {comment.content}
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };

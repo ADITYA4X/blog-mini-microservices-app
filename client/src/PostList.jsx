@@ -6,10 +6,10 @@ import CommentList from "./CommentList";
 
 function PostList() {
   const [posts, setPosts] = useState({});
-  const [commentRefresh, setCommentRefresh] = useState({});
 
   const fetchPosts = useCallback(async () => {
-    const res = await axios.get("http://localhost:4000/posts");
+    const res = await axios.get("http://localhost:4002/posts");
+    // console.log(res.data);
 
     setPosts(res.data);
   }, []);
@@ -20,17 +20,13 @@ function PostList() {
   }, [fetchPosts]);
 
   const handleDelete = async (postId) => {
-    await axios.delete(`http://localhost:4000/posts/${postId}`);
+    await axios.delete(`http://localhost:4002/posts/${postId}`);
 
     setPosts((prevPosts) => {
       const updatedPosts = { ...prevPosts };
       delete updatedPosts[postId];
       return updatedPosts;
     });
-  };
-
-  const triggerCommentRefresh = (postId) => {
-    setCommentRefresh((prev) => ({ ...prev, [postId]: Date.now() }));
   };
 
   return (
@@ -69,16 +65,10 @@ function PostList() {
                 X
               </button>
             </div>
-            <CommentCreate
-              postId={post.id}
-              onCommentCreated={() => triggerCommentRefresh(post.id)}
-            />
+            <CommentCreate postId={post.id} />
 
             <div className="mt-4">
-              <CommentList
-                postId={post.id}
-                refreshSignal={commentRefresh?.[post.id]}
-              />
+              <CommentList comments={post.comments} />
             </div>
           </div>
         ))}
