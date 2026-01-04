@@ -7,11 +7,11 @@ const CommentList = ({ comments }) => {
       {comments?.length === 0 ? (
         <p className="text-gray-500">No comments yet.</p>
       ) : (
-        <ul className="space-y-2">
+        <ul className=" space-y-2  ">
           {comments?.map((comment) => (
             <li
               key={comment.id}
-              className="p-2 border border-gray-300 rounded-lg bg-white"
+              className="p-2 bg-white border border-gray-200 rounded-lg shadow-sm"
             >
               {comment.content}
             </li>

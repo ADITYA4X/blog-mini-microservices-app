@@ -67,7 +67,7 @@ function PostList() {
             </div>
             <CommentCreate postId={post.id} />
 
-            <div className="mt-4">
+            <div className="mt-4   ">
               <CommentList comments={post.comments} />
             </div>
           </div>
